@@ -1,0 +1,17 @@
+article.vrchecke-form {
+  grid-column: span 2;
+  & .form-sections {
+    &:first-child {
+      gap: 0.5em;
+      & .vrchecke-input-container.vrchecke-input-container--image {
+        width: 30%;
+      }
+    }
+    & .vrchecke-input-container.vrchecke-input-container--image {
+      min-height: 45vh;
+      & label {
+        width: 70%;
+      }
+    }
+  }
+}

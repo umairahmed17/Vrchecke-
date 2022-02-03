@@ -1,0 +1,6 @@
+.vrchecke-form {
+  grid-column: span 2;
+  color: black;
+  display: grid;
+  grid-template-columns: repeat(1fr, 33);
+}
