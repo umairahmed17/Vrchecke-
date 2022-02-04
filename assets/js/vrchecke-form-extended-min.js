@@ -1,0 +1,1 @@
+const targetNode=document.querySelector('.form-sections[data-section="6"]'),config={attributes:!0,attributeFilter:["style"]},callback=function(e){console.log(e);for(const t of e)console.log(t),"attributes"===t.type&&console.log("The "+t.attributeName+" attribute was modified.")},observer=new MutationObserver(callback);observer.observe(targetNode,config),observer.disconnect();
