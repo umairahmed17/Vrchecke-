@@ -22,7 +22,7 @@ function process_form()
     /**
      * Checking Nonce.
      */
-    if ( !( isset( $_POST['vrchecke_nonce'] ) && wp_verify_nonce( sanitize_text_field( $_POST['vrchecke_nonce'] ), 'vrchecke_form_nonce' ) ) ) {
+    if ( ! ( isset( $_POST['vrchecke_nonce'] ) && wp_verify_nonce( sanitize_text_field( $_POST['vrchecke_nonce'] ), 'vrchecke_form_nonce' ) ) ) {
         vr_errors()->add( 'invalid_nonce', __( 'An authentication error occurred. Please try again.', 'vrchecke' ), 'vrchecke-form' );
 
         wp_send_json_error(
@@ -58,7 +58,7 @@ function process_form()
      */
     $user_data = validate_userdata();
     $errors    = vr_errors()->get_error_messages();
-    if ( !empty( $errors ) ) {
+    if ( ! empty( $errors ) ) {
         wp_send_json_error(
             array(
                 'success' => false,
@@ -78,7 +78,7 @@ function process_form()
         vr_errors()->add( $user_id->get_error_code(), $user_id->get_error_message(), 'vrchecke-form' );
     }
     $errors = vr_errors()->get_error_messages();
-    if ( !empty( $errors ) ) {
+    if ( ! empty( $errors ) ) {
         wp_send_json_error(
             array(
                 'success' => false,
@@ -93,7 +93,7 @@ function process_form()
      */
     $meta_keys = updating_user_meta( $user_id );
     $errors    = vr_errors()->get_error_messages();
-    if ( !empty( $errors ) || !$meta_keys ) {
+    if ( ! empty( $errors ) || ! $meta_keys ) {
         wp_send_json_error(
             array(
                 'success' => false,
@@ -132,7 +132,7 @@ function process_form()
      * Inserting data into database
      */
     $inserted = inserting_form_entry( $user_id, $args );
-    if ( !$inserted ) {
+    if ( ! $inserted ) {
         $errors = vr_errors()->get_error_messages();
         wp_send_json_error(
             array(
@@ -148,13 +148,15 @@ function process_form()
          * Creating Success json object.
          */
         $user         = get_userdata( $user_id );
-        $display_name = !$user->display_name ? $user->first_name . ' ' . $user->last_name : $user->display_name;
+        $display_name = ! $user->display_name ? $user->first_name . ' ' . $user->last_name : $user->display_name;
         $email        = $user->user_email;
         $message      = get_theme_mod( 'success_form_submit_message', 'Thank You.' );
-        wp_send_json_success( array( 'name' => $display_name, 'email' => $email, 'message' => $message ), 200 );
+        $icon         = get_theme_mod( 'success_form_submit_icon' );
+        wp_send_json_success( array( 'name' => $display_name, 'email' => $email, 'message' => $message, 'icon' => $icon ), 200 );
     }
 
 }
+
 add_action( 'wp_ajax_vrchecke_process_form', __NAMESPACE__ . '\\process_form', 100 );
 add_action( 'wp_ajax_nopriv_vrchecke_process_form', __NAMESPACE__ . '\\process_form', 100 );
 
@@ -166,37 +168,37 @@ add_action( 'wp_ajax_nopriv_vrchecke_process_form', __NAMESPACE__ . '\\process_f
  */
 function is_empty_form_data()
 {
-    if ( !isset( $_POST['e-statement-check'] ) ) {
+    if ( ! isset( $_POST['e-statement-check'] ) ) {
         vr_errors()->add( 'empty_statement_check', __( 'Select if this is your first E-scheck or not', 'vrchecke' ), 'vrchecke-form' );
     }
-    if ( !isset( $_POST['number_of_devices'] ) ) {
+    if ( ! isset( $_POST['number_of_devices'] ) ) {
         vr_errors()->add( 'empty_number_of_devices', __( 'Select Number of devices', 'vrchecke' ), 'vrchecke-form' );
     }
-    if ( !isset( $_POST['electrical_eqp'] ) ) {
+    if ( ! isset( $_POST['electrical_eqp'] ) ) {
         vr_errors()->add( 'empty_electrical_eqp', __( 'Select Type of electrical equipments', 'vrchecke' ), 'vrchecke-form' );
     }
-    if ( !isset( $_POST['postal-code'] ) ) {
+    if ( ! isset( $_POST['postal-code'] ) ) {
         vr_errors()->add( 'postal-code', __( 'Enter postal code', 'vrchecke' ), 'vrchecke-form' );
     }
-    if ( !isset( $_POST['postal-code-duplicate'] ) || $_POST['postal-code-duplicate'] !== $_POST['postal-code'] ) {
+    if ( ! isset( $_POST['postal-code-duplicate'] ) || $_POST['postal-code-duplicate'] !== $_POST['postal-code'] ) {
         vr_errors()->add( 'postal-code-mismatch', __( 'Please add same postal code', 'vrchecke' ), 'vrchecke-form' );
     }
-    if ( !isset( $_POST['first-name'] ) ) {
+    if ( ! isset( $_POST['first-name'] ) ) {
         vr_errors()->add( 'empty_first-name', __( 'Enter your first name', 'vrchecke' ), 'vrchecke-form' );
     }
-    if ( !isset( $_POST['last-name'] ) ) {
+    if ( ! isset( $_POST['last-name'] ) ) {
         vr_errors()->add( 'empty_last-name', __( 'Enter your last name', 'vrchecke' ), 'vrchecke-form' );
     }
-    if ( !isset( $_POST['street-address'] ) ) {
+    if ( ! isset( $_POST['street-address'] ) ) {
         vr_errors()->add( 'empty_street-address', __( 'Enter your street address', 'vrchecke' ), 'vrchecke-form' );
     }
-    if ( !isset( $_POST['email'] ) ) {
+    if ( ! isset( $_POST['email'] ) ) {
         vr_errors()->add( 'empty_email', __( 'Enter your email address', 'vrchecke' ), 'vrchecke-form' );
     }
-    if ( !isset( $_POST['phone-number'] ) ) {
+    if ( ! isset( $_POST['phone-number'] ) ) {
         vr_errors()->add( 'empty_phone-number', __( 'Enter your phone number address', 'vrchecke' ), 'vrchecke-form' );
     }
-    if ( !empty( vr_errors()->get_error_messages() ) ) {
+    if ( ! empty( vr_errors()->get_error_messages() ) ) {
         return true;
     } else {
         return false;
@@ -231,7 +233,7 @@ function validate_userdata()
         );
     }
 
-    if ( !is_email( $user['email'] ) ) {
+    if ( ! is_email( $user['email'] ) ) {
         // invalid email
         vr_errors()->add( 'email_invalid', __( 'Invalid email', 'rcp' ), 'vrchecke-form' );
     }
@@ -266,11 +268,11 @@ function insert_user( $user )
             'user_email'      => $user['email'],
             'first_name'      => $user['first_name'],
             'last_name'       => $user['last_name'],
-            'display_name'    => !empty( $display_name ) ? $display_name : $user['login'],
+            'display_name'    => ! empty( $display_name ) ? $display_name : $user['login'],
             'user_registered' => date( 'Y-m-d H:i:s' ),
         )
     );
-    if ( !is_wp_error( $user['id'] ) ) {
+    if ( ! is_wp_error( $user['id'] ) ) {
         /**
          * Not required to log in
          */
@@ -317,7 +319,7 @@ function updating_user_meta( $user_id )
     $user_address = sanitize_text_field( $_POST['street-address'] );
     $user_city    = sanitize_text_field( $_POST['city'] );
 
-    if ( !$user ) {
+    if ( ! $user ) {
         vr_errors()->add( 'user_meta_failed', sprintf( __( 'Failed to add user meta for user with user id %d', 'vrchecke' ), $user_id ), 'vrchecke-form' );
     } else {
         $meta_address = update_user_meta( $user_id, 'address', $user_address );
@@ -332,16 +334,16 @@ function updating_user_meta( $user_id )
      */
     do_action( 'vrchecke_userdata_update', $user_id );
 
-    if ( !$meta_address ) {
+    if ( ! $meta_address ) {
         vr_errors()->add( 'user_meta_failed', sprintf( __( 'Failed to add user meta for user with user id %1$d and meta key %2$s', 'vrchecke' ), $user_id, 'address' ), 'vrchecke-form' );
     }
-    if ( !$meta_city ) {
+    if ( ! $meta_city ) {
         vr_errors()->add( 'user_meta_failed', sprintf( __( 'Failed to add user meta for user with user id %1$d and meta key %2$s', 'vrchecke' ), $user_id, 'city' ), 'vrchecke-form' );
     }
-    if ( !$meta_phone ) {
+    if ( ! $meta_phone ) {
         vr_errors()->add( 'user_meta_failed', sprintf( __( 'Failed to add user meta for user with user id %1$d and meta key %2$s', 'vrchecke' ), $user_id, 'phone' ), 'vrchecke-form' );
     }
-    if ( !empty( vr_errors()->get_error_messages() ) ) {
+    if ( ! empty( vr_errors()->get_error_messages() ) ) {
         return false;
     } else {
         $meta_keys = array( $meta_address, $meta_city, $meta_phone );
@@ -378,7 +380,7 @@ function inserting_form_entry( $user_id, $args )
      *
      * Will provide it soon
      */
-    if ( !$args['default'] && count( $args ) === count( $default ) ) {
+    if ( ! $args['default'] && count( $args ) === count( $default ) ) {
         $table = $wpdb->prefix . 'form_entries';
         $now   = current_time( 'mysql' );
         $data  = array(
@@ -393,7 +395,7 @@ function inserting_form_entry( $user_id, $args )
         $rows   = $wpdb->insert( $table, $data, $format );
         $my_id  = $wpdb->insert_id;
     }
-    if ( !$rows ) {
+    if ( ! $rows ) {
         vr_errors()->add( 'entry_failed', __( 'Failed to add form entry', 'vrchecke' ), 'vrchecke-form' );
         vr_errors()->add( 'entry_failed_debug', print_r( $args ) . '\n ' . $rows, 'vrchecke-form' );
         deleting_user_meta( $user_id );
@@ -414,16 +416,16 @@ function deleting_user_meta( $user_id )
     $meta_city    = delete_user_meta( $user_id, 'city' );
     $meta_phone   = delete_user_meta( $user_id, 'phone_number' );
     $del_user     = wp_delete_user( $user_id );
-    if ( !$meta_address ) {
+    if ( ! $meta_address ) {
         vr_errors()->add( 'delete_user_meta_failed', sprintf( __( 'Failed to delete user meta for user with user id %1$d and meta key %2$s', 'vrchecke' ), $user_id, 'address' ), 'vrchecke-form' );
     }
-    if ( !$meta_city ) {
+    if ( ! $meta_city ) {
         vr_errors()->add( 'delete_user_meta_failed', sprintf( __( 'Failed to delete user meta for user with user id %1$d and meta key %2$s', 'vrchecke' ), $user_id, 'city' ), 'vrchecke-form' );
     }
-    if ( !$meta_phone ) {
+    if ( ! $meta_phone ) {
         vr_errors()->add( 'delete_user_meta_failed', sprintf( __( 'Failed to delete user meta for user with user id %1$d and meta key %2$s', 'vrchecke' ), $user_id, 'phone' ), 'vrchecke-form' );
     }
-    if ( !empty( vr_errors()->get_error_messages() ) ) {
+    if ( ! empty( vr_errors()->get_error_messages() ) ) {
         return false;
     } else {
         return true;
