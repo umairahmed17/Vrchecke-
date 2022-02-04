@@ -63,3 +63,9 @@ require get_template_directory() . '/inc/functions.php';
 
 // Initialize the theme.
 call_user_func( 'VRCHECKE\VRCHECKE\vrchecke' );
+
+// function admin_default_page() {
+//     return '/new-dashboard-url';
+//   }
+
+//   add_filter('login_redirect', 'admin_default_page');

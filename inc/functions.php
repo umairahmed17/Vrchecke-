@@ -15,13 +15,14 @@ use VRCHECKE\VRCHECKE\Theme;
  *
  * @return Template_Tags Template tags instance exposing template tag methods.
  */
-function vrchecke(): Template_Tags {
-	static $theme = null;
+function vrchecke(): Template_Tags
+{
+    static $theme = null;
 
-	if ( null === $theme ) {
-		$theme = new Theme();
-		$theme->initialize();
-	}
+    if ( null === $theme ) {
+        $theme = new Theme();
+        $theme->initialize();
+    }
 
-	return $theme->template_tags();
+    return $theme->template_tags();
 }
