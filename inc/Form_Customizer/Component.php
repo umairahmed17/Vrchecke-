@@ -114,6 +114,19 @@ class Component implements Component_Interface
         /**
          * First Section form settings and controls
          */
+        $wp_customize->add_setting( 'success_form_submit_icon', array(
+            'type'              => 'theme_mod',
+            'transport'         => 'refresh',
+            'sanitize_callback' => array( $this, 'ic_sanitize_image' ),
+        ) );
+        $wp_customize->add_control(
+            new WP_Customize_Image_Control( $wp_customize, 'success_form_submit_icon',
+                array(
+                    'label'    => __( 'Success Form Image', 'vrchecke' ),
+                    'section'  => 'form_customizer_section_one',
+                    'settings' => 'success_form_submit_icon',
+                )
+            ) );
         $wp_customize->add_setting( 'success_form_submit_message', array(
             'type'              => 'theme_mod',
             'transport'         => 'refresh',
@@ -124,7 +137,7 @@ class Component implements Component_Interface
         $wp_customize->add_control( 'success_form_submit_message', array(
             'label'       => 'Success Message',
             'section'     => 'form_customizer_section_one',
-            'type'        => 'text',
+            'type'        => 'textarea',
             'description' => __( 'Success message after form submit.', 'vrchecke' ),
 
         ) ); //Submit Success Message - Control
