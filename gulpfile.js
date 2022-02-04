@@ -37,7 +37,12 @@ gulp.task("styles", function () {
 gulp.task("scripts", function () {
   return gulp
     .src(["./assets/js/src/*.js"])
-    .pipe(minify())
+    .pipe(minify({ keepBreaks: true }))
+    .pipe(
+      rename({
+        suffix: ".min",
+      })
+    )
     .pipe(gulp.dest("./assets/js/"));
 });
 
