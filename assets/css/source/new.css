@@ -1,17 +1,51 @@
 article.vrchecke-form {
-  grid-column: span 2;
   & .form-sections {
-    &:first-child {
-      gap: 0.5em;
-      & .vrchecke-input-container.vrchecke-input-container--image {
-        width: 30%;
+    & .images__wrap {
+      position: relative;
+
+      & .image__search {
+        width: 100px;
+        height: 100px;
+      }
+
+      & .animation__images {
+        width: calc(150px + (0.5em * 2));
+        height: 35px;
+        overflow: hidden;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        z-index: -1;
+        transform: translate(-53%, -80%);
+
+        & .animation__images-wrap {
+          width: 50px;
+          height: 100%;
+          display: flex;
+          gap: 0.5em;
+        }
       }
     }
-    & .vrchecke-input-container.vrchecke-input-container--image {
-      min-height: 45vh;
-      & label {
-        width: 70%;
-      }
-    }
+  }
+}
+.animation__images-wrap {
+  animation: animate_search 2000ms ease-out forwards;
+  transform: translateX(1px);
+}
+@keyframes animate_search {
+  0% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-60px);
+  }
+  50% {
+    transform: translateX(-120px);
+  }
+  75% {
+    transform: translateX(-180px);
+  }
+  100% {
+    transform: translateX(-240px);
   }
 }

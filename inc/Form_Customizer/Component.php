@@ -499,6 +499,124 @@ class Component implements Component_Interface
             'section' => 'form_customizer_section_search',
             'type'    => 'text',
         ) );
+        //Search section images
+        $wp_customize->add_setting( 'search_image_animation_1', array(
+            'type'              => 'theme_mod',
+            'transport'         => 'refresh',
+            'sanitize_callback' => array( $this, 'ic_sanitize_image' ),
+        ) );
+        $wp_customize->add_control(
+            new WP_Customize_Image_Control( $wp_customize, 'search_image_animation_1',
+                array(
+                    'label'    => __( 'Animation Images', 'vrchecke' ),
+                    'section'  => 'form_customizer_section_search',
+                    'settings' => 'search_image_animation_1',
+                )
+            ) );
+        $wp_customize->add_setting( 'search_image_animation_2', array(
+            'type'              => 'theme_mod',
+            'transport'         => 'refresh',
+            'sanitize_callback' => array( $this, 'ic_sanitize_image' ),
+        ) );
+        $wp_customize->add_control(
+            new WP_Customize_Image_Control( $wp_customize, 'search_image_animation_2',
+                array(
+                    'label'    => __( 'Animation Images', 'vrchecke' ),
+                    'section'  => 'form_customizer_section_search',
+                    'settings' => 'search_image_animation_2',
+                )
+            ) );
+        $wp_customize->add_setting( 'search_image_animation_3', array(
+            'type'              => 'theme_mod',
+            'transport'         => 'refresh',
+            'sanitize_callback' => array( $this, 'ic_sanitize_image' ),
+        ) );
+        $wp_customize->add_control(
+            new WP_Customize_Image_Control( $wp_customize, 'search_image_animation_3',
+                array(
+                    'label'    => __( 'Animation Images', 'vrchecke' ),
+                    'section'  => 'form_customizer_section_search',
+                    'settings' => 'search_image_animation_3',
+                )
+            ) );
+        $wp_customize->add_setting( 'search_image_animation_4', array(
+            'type'              => 'theme_mod',
+            'transport'         => 'refresh',
+            'sanitize_callback' => array( $this, 'ic_sanitize_image' ),
+        ) );
+        $wp_customize->add_control(
+            new WP_Customize_Image_Control( $wp_customize, 'search_image_animation_4',
+                array(
+                    'label'    => __( 'Animation Images', 'vrchecke' ),
+                    'section'  => 'form_customizer_section_search',
+                    'settings' => 'search_image_animation_4',
+                )
+            ) );
+        $wp_customize->add_setting( 'search_image_animation_5', array(
+            'type'              => 'theme_mod',
+            'transport'         => 'refresh',
+            'sanitize_callback' => array( $this, 'ic_sanitize_image' ),
+        ) );
+        $wp_customize->add_control(
+            new WP_Customize_Image_Control( $wp_customize, 'search_image_animation_5',
+                array(
+                    'label'    => __( 'Animation Images', 'vrchecke' ),
+                    'section'  => 'form_customizer_section_search',
+                    'settings' => 'search_image_animation_5',
+                )
+            ) );
+        $wp_customize->add_setting( 'search_image_animation_6', array(
+            'type'              => 'theme_mod',
+            'transport'         => 'refresh',
+            'sanitize_callback' => array( $this, 'ic_sanitize_image' ),
+        ) );
+        $wp_customize->add_control(
+            new WP_Customize_Image_Control( $wp_customize, 'search_image_animation_6',
+                array(
+                    'label'    => __( 'Animation Images', 'vrchecke' ),
+                    'section'  => 'form_customizer_section_search',
+                    'settings' => 'search_image_animation_6',
+                )
+            ) );
+        $wp_customize->add_setting( 'search_image_animation_7', array(
+            'type'              => 'theme_mod',
+            'transport'         => 'refresh',
+            'sanitize_callback' => array( $this, 'ic_sanitize_image' ),
+        ) );
+        $wp_customize->add_control(
+            new WP_Customize_Image_Control( $wp_customize, 'search_image_animation_7',
+                array(
+                    'label'    => __( 'Animation Images', 'vrchecke' ),
+                    'section'  => 'form_customizer_section_search',
+                    'settings' => 'search_image_animation_7',
+                )
+            ) );
+        $wp_customize->add_setting( 'search_image_animation_8', array(
+            'type'              => 'theme_mod',
+            'transport'         => 'refresh',
+            'sanitize_callback' => array( $this, 'ic_sanitize_image' ),
+        ) );
+        $wp_customize->add_control(
+            new WP_Customize_Image_Control( $wp_customize, 'search_image_animation_8',
+                array(
+                    'label'    => __( 'Animation Images', 'vrchecke' ),
+                    'section'  => 'form_customizer_section_search',
+                    'settings' => 'search_image_animation_8',
+                )
+            ) );
+        $wp_customize->add_setting( 'search_image_animation_finish', array(
+            'type'              => 'theme_mod',
+            'transport'         => 'refresh',
+            'sanitize_callback' => array( $this, 'ic_sanitize_image' ),
+        ) );
+        $wp_customize->add_control(
+            new WP_Customize_Image_Control( $wp_customize, 'search_image_animation_finish',
+                array(
+                    'label'    => __( 'Animation Finish Image', 'vrchecke' ),
+                    'section'  => 'form_customizer_section_search',
+                    'settings' => 'search_image_animation_finish',
+                )
+            ) );
 
         /**
          * Fifth Section form settings and controls

@@ -11,6 +11,14 @@ vrchecke()->print_styles( 'vrchecke-vrchecke-form' );
 
 $bgImg   = get_theme_mod( 'bg_image_section_bg' ) ? esc_url( get_theme_mod( 'bg_image_section_bg' ) ) : '';
 $bgColor = get_theme_mod( 'bg_color_section_bg', '#00000000' );
+
+for ( $i = 1; $i < 9; $i++ ) {
+    ${"anim_" . $i} = get_theme_mod( 'search_image_animation_' . $i );
+}
+
+$animation_images   = $anim_1 && $anim_2 && $anim_3 && $anim_4 && $anim_5;
+$loading_done_image = get_theme_mod( 'search_image_animation_finish' );
+
 ?>
 
 <article class="vrchecke-form"
@@ -220,8 +228,20 @@ $bgColor = get_theme_mod( 'bg_color_section_bg', '#00000000' );
             <div class="loading-icon_container">
                 <div class="company-images__container">
                     <div class="images__wrap">
+                        <?php if ( $animation_images ): ?>
+                            <div class="image__search"><img src="<?php echo get_stylesheet_directory_uri() . '/assets/images/magnifying-glass.svg' ?>" alt=""></div>
+                            <div class="animation__images">
+                                <div class="animation__images-wrap">
+                                <?php for ( $i = 1; $i < 9; $i++ ): ?>
+                                    <img src="<?php echo esc_url( ${"anim_" . $i} ); ?>" alt="" />
+                                <?php endfor;?>
+                                </div>
+                            </div>
+                        <?php else: ?>
                         <img src="//d2gui02c8ysary.cloudfront.net/uploads/attachment/image/64406/solar_lupe_logos_animation_02_green.gif"
                             alt="Loading gif" />
+                            <?php endif;?>
+
                         <!-- <div class="image-container">
                             <img src="" />
                         </div>
@@ -236,7 +256,11 @@ $bgColor = get_theme_mod( 'bg_color_section_bg', '#00000000' );
                 <!-- <div class="icon__search"><span class="material-icons">search</span></div> -->
             </div>
             <div class="loading-done">
+                <?php if ( $loading_done_image ): ?>
+                    <div class="icon__done"><img src="<?php echo esc_url( $loading_done_image ); ?>" alt=""></div>
+                <?php else: ?>
                 <div class="icon__done"><span class="material-icons">done</span></div>
+                <?php endif;?>
                 <p class="loading_text--done">
                     <?php _e( get_theme_mod( 'search_text_section_four' ) ? get_theme_mod( 'search_text_section_four' ) : 'Found', 'vrchecke' );?>
                 </p>
