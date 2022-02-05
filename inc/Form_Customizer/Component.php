@@ -732,6 +732,18 @@ class Component implements Component_Interface
             'type'    => 'text',
         ) ); // Submit Text
 
+        $wp_customize->add_setting( 'after_submit_text_section_five', array(
+            'type'              => 'theme_mod',
+            'transport'         => 'refresh',
+            'sanitize_callback' => 'wp_filter_nohtml_kses',
+            'default'           => 'Example',
+        ) ); // Submit Text
+        $wp_customize->add_control( 'after_submit_text_section_five', array(
+            'label'   => 'After Submit Text',
+            'section' => 'form_customizer_section_five',
+            'type'    => 'text',
+        ) ); // Submit Text
+
         /**
          * Video Section
          */

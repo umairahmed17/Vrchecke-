@@ -307,6 +307,7 @@ $loading_done_image = get_theme_mod( 'search_image_animation_finish' );
             <div class="button" id="submit">
                 <?php _e( get_theme_mod( 'submit_text_section_five' ) ? get_theme_mod( 'submit_text_section_five' ) : 'Agree and send application', 'vrchecke' );?>
             </div>
+            <div class="after-btn-text disabled"><p><?php _e( get_theme_mod( 'after_submit_text_section_five', 'Something' ), 'vrchecke' )?></p></div>
             <div class="loader"></div>
         </div>
     </form>
