@@ -49,3 +49,10 @@ article.vrchecke-form {
     transform: translateX(-240px);
   }
 }
+
+.after-btn-text {
+  & p {
+    font-size: 1rem;
+    color: red;
+  }
+}
