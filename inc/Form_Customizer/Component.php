@@ -727,7 +727,7 @@ class Component implements Component_Interface
             'default'           => 'Agree and send application',
         ) ); // Submit Text
         $wp_customize->add_control( 'submit_text_section_five', array(
-            'label'   => 'Label',
+            'label'   => __( 'Submit Button Text', 'vrchecke' ),
             'section' => 'form_customizer_section_five',
             'type'    => 'text',
         ) ); // Submit Text
@@ -739,7 +739,7 @@ class Component implements Component_Interface
             'default'           => 'Example',
         ) ); // Submit Text
         $wp_customize->add_control( 'after_submit_text_section_five', array(
-            'label'   => 'After Submit Text',
+            'label'   => __( 'After Submit Button Text', 'vrchecke' ),
             'section' => 'form_customizer_section_five',
             'type'    => 'text',
         ) ); // Submit Text
