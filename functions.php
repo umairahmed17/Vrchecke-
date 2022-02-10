@@ -9,11 +9,11 @@
  * @package vrchecke
  */
 
-define( 'VRCHECKE_MINIMUM_WP_VERSION', '4.7' );
-define( 'VRCHECKE_MINIMUM_PHP_VERSION', '7.0' );
+define('VRCHECKE_MINIMUM_WP_VERSION', '4.7');
+define('VRCHECKE_MINIMUM_PHP_VERSION', '7.0');
 
 // Bail if requirements are not met.
-if ( version_compare( $GLOBALS['wp_version'], VRCHECKE_MINIMUM_WP_VERSION, '<' ) || version_compare( phpversion(), VRCHECKE_MINIMUM_PHP_VERSION, '<' ) ) {
+if (version_compare($GLOBALS['wp_version'], VRCHECKE_MINIMUM_WP_VERSION, '<') || version_compare(phpversion(), VRCHECKE_MINIMUM_PHP_VERSION, '<')) {
     require get_template_directory() . '/inc/back-compat.php';
     return;
 }
@@ -30,23 +30,23 @@ require get_template_directory() . '/inc/wordpress-shims.php';
  * @param string $class_name Class name to load.
  * @return bool True if the class was loaded, false otherwise.
  */
-function _vrchecke_autoload( $class_name )
+function _vrchecke_autoload($class_name)
 {
     $namespace = 'VRCHECKE\VRCHECKE';
 
-    if ( strpos( $class_name, $namespace . '\\' ) !== 0 ) {
+    if (strpos($class_name, $namespace . '\\') !== 0) {
         return false;
     }
 
-    $parts = explode( '\\', substr( $class_name, strlen( $namespace . '\\' ) ) );
+    $parts = explode('\\', substr($class_name, strlen($namespace . '\\')));
 
     $path = get_template_directory() . '/inc';
-    foreach ( $parts as $part ) {
+    foreach ($parts as $part) {
         $path .= '/' . $part;
     }
     $path .= '.php';
 
-    if ( ! file_exists( $path ) ) {
+    if (!file_exists($path)) {
         return false;
     }
 
@@ -56,16 +56,24 @@ function _vrchecke_autoload( $class_name )
 }
 
 require_once get_template_directory() . '/vendor/autoload.php';
-spl_autoload_register( '_vrchecke_autoload' );
+spl_autoload_register('_vrchecke_autoload');
 
 // Load the `vrchecke()` entry point function.
 require get_template_directory() . '/inc/functions.php';
 
 // Initialize the theme.
-call_user_func( 'VRCHECKE\VRCHECKE\vrchecke' );
+call_user_func('VRCHECKE\VRCHECKE\vrchecke');
 
 // function admin_default_page() {
 //     return '/new-dashboard-url';
 //   }
 
-//   add_filter('login_redirect', 'admin_default_page');
+//   add_filter('login_redirect', 'admin_default_page')
+
+add_action(
+    'wp_head', function () {
+
+        echo '<pre>';
+        print_r(get_option('email_template'));
+        echo '</pre>';
+    });

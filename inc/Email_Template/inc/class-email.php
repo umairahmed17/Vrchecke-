@@ -251,7 +251,7 @@ class VRCHECKE_Emails
             array(
                 'tag'         => 'useremail',
                 'description' => __('The email address', 'vrchecke'),
-                'function'    => 'vrchecke_email_do_tag',
+                'function'    => 'vrchecke_useremail_do_tag',
             ),
             array(
                 'tag'         => 'firstname',
