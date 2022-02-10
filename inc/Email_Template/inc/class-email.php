@@ -293,7 +293,7 @@ class VRCHECKE_Emails
         }
 
         if ($tag === 'password') {
-            return $this->$user_password;
+            return $this->user_password;
         }
 
         return call_user_func($this->tags[$tag]['function'], $this->user_id, $tag);
